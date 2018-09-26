@@ -21,7 +21,25 @@ namespace Scheduler.Model
         ///
         public int Id { get; set; }
         ///
-        public string Value{ get; set; }
+        public string Value { get; set; }
 
     }
+
+    /// Model used for hour list box items
+    public class HourListBoxItem : ComboItem
+    {
+        /// Default constructor
+        public HourListBoxItem() { }
+        /// Parameterized constructor
+        public HourListBoxItem(int id, string value, DateTime hour)
+        {
+            this.Id = id;
+            this.Value = value;
+            this.Hour = hour;
+        }
+
+        /// 
+        public DateTime Hour { get; set; }
+    }
+
 }

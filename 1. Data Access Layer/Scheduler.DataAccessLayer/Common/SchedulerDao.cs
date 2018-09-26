@@ -7,14 +7,14 @@ namespace Scheduler.DataAccessLayer.Common
     /// Scheduler DAO
     public class SchedulerDao
     {
-        /// Get user information from the DB
-        public DataSet GetUserInformation(string Username, string Password, int EntityType, string SessionId)
-        {
+        /// Get active schedulers from TSchedulerExecution table
+        public DataSet GetActiveSchedulers()
+        {/*
             OracleDbAccess dbAccess = new OracleDbAccess();
             OracleConnection oracleConnection;
             OracleDataAdapter dataAdapter = new OracleDataAdapter();
             OracleCommand command = new OracleCommand();
-            DataSet dsSettings = null;
+            DataSet dsSchedulers = null;
 
             try
             {
@@ -43,20 +43,16 @@ namespace Scheduler.DataAccessLayer.Common
 
                 // Fill dataset
                 dataAdapter = new OracleDataAdapter(command);
-                dsSettings = new DataSet();
-                dataAdapter.Fill(dsSettings);
+                dsSchedulers = new DataSet();
+                dataAdapter.Fill(dsSchedulers);
             }
             catch (Exception ex)
             {
-                dsSettings = null;
+                dsSchedulers = null;
             }
-            return dsSettings;
+            return dsSchedulers;*/
+            return null;
         }
-
-
-
-
-
 
     }
 }

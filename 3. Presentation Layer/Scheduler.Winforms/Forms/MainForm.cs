@@ -3,25 +3,50 @@ using Scheduler.DataModel;
 using Scheduler.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Scheduler
 {
     public partial class MainForm : Form
     {
+        #region GLOBAL_VARIABLES
+
+        List<HourListBoxItem> _ListBoxItems;
+
+        #endregion
+
+        #region CONSTRUCTORS
+
         public MainForm()
         {
             InitializeComponent();
             LoadControls();
         }
 
+        #endregion
+
+        #region METHODS
+
         private void LoadControls()
         {
             dtStartDate.Value = DateTime.Today;
             dtEndDate.Value = DateTime.Today.AddYears(1);
+            _ListBoxItems = new List<HourListBoxItem>();
 
             LoadPartnerTypes();
             LoadRecurrenceFrequency();
+        }
+
+        private void RefreshListbox()
+        {
+            lbHours.DataSource = null;
+            if (_ListBoxItems.Count > 0)
+            {
+                lbHours.DataSource = _ListBoxItems;
+                lbHours.DisplayMember = "Value";
+                lbHours.ValueMember = "Id";
+            }
         }
 
         private void LoadPartnerTypes()
@@ -60,6 +85,10 @@ namespace Scheduler
             }
         }
 
+        #endregion
+
+        #region EVENT_HANDLERS
+
         private void btnAddScheduler_Click(object sender, EventArgs e)
         {
             // Temporarily hard-coded
@@ -84,6 +113,24 @@ namespace Scheduler
 
         }
 
+        private void btnAddHour_Click(object sender, EventArgs e)
+        {
+            HourListBoxItem ListBoxItem = new HourListBoxItem(_ListBoxItems.Count, dpExecutionTime.Value.ToLongTimeString(), dpExecutionTime.Value);
+            _ListBoxItems.Add(ListBoxItem);
+            RefreshListbox();
+        }
+
+        private void btRemove_Click(object sender, EventArgs e)
+        {
+            if (lbHours.Items.Count > 0)
+            {
+                HourListBoxItem selectedItem = (HourListBoxItem)lbHours.SelectedItem;
+                _ListBoxItems.Remove(selectedItem);
+                RefreshListbox();
+            }
+        }
+
+        #endregion
 
 
     }

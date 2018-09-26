@@ -44,6 +44,7 @@
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\Helper.cs" />
     <Compile Include="Common\MainLogic.cs" />
+    <Compile Include="Common\ServiceBlo.cs" />
     <Compile Include="Model\SchedulerExecution.cs" />
     <Compile Include="Model\Scheduler.cs" />
     <Compile Include="Model\SchedulerLog.cs" />

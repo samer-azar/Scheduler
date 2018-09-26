@@ -19,10 +19,11 @@ namespace Scheduler.ClassLibrary.Common
         public enum RecurrenceFrequency
         {
             OneTime = 1,
-            Hourly = 2,
-            Daily = 3,
-            Weekly = 4,
-            Monthly = 5
+            ByHour = 2,
+            Hourly = 3,
+            Daily = 4,
+            Weekly = 5,
+            Monthly = 6
         }
 
         public enum Month

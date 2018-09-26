@@ -1,6 +1,6 @@
 ﻿namespace Scheduler.WindowsService
 {
-    partial class Service1
+    partial class Scheduler
     {
         /// <summary> 
         /// Required designer variable.
