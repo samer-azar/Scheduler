@@ -5,10 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="6ca901b1522b42449a22f5ea28bfc738" Name="Diagram1">
-        <EntityTypeShape EntityType="SchedulerModel.TScheduler" Width="1.5" PointX="1.625" PointY="2.5" />
-        <EntityTypeShape EntityType="SchedulerModel.TSchedulerExecution" Width="1.5" PointX="3.875" PointY="1.5" />
+        <EntityTypeShape EntityType="SchedulerModel.TScheduler" Width="1.875" PointX="1.25" PointY="2.5" />
+        <EntityTypeShape EntityType="SchedulerModel.TSchedulerExecution" Width="2" PointX="3.875" PointY="1.5" />
         <EntityTypeShape EntityType="SchedulerModel.TSchedulerLog" Width="2" PointX="6.875" PointY="0.5" />
-        <EntityTypeShape EntityType="SchedulerModel.TSchedulerSetting" Width="1.5" PointX="6.875" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchedulerModel.TSchedulerSetting" Width="3" PointX="6.875" PointY="4.375" IsExpanded="true" />
         <AssociationConnector Association="SchedulerModel.FK_Scheduler_Trigger1" />
         <AssociationConnector Association="SchedulerModel.FK_TriggerSettings_Trigger1" />
         <AssociationConnector Association="SchedulerModel.FK_TSchedulerLog_TSchedulerExecution" />

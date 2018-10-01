@@ -71,6 +71,7 @@
             this.labelMonthlyMonth = new System.Windows.Forms.Label();
             this.checkedListBoxMonthlyMonths = new System.Windows.Forms.CheckedListBox();
             this.tpViewScheduler = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.tcScheduler.SuspendLayout();
             this.tpAddScheduler.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -84,6 +85,7 @@
             this.tabControlMonthlyMode.SuspendLayout();
             this.tabPageMonthlyDayOfMonth.SuspendLayout();
             this.tabPageMonthlyWeekDay.SuspendLayout();
+            this.tpViewScheduler.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAddScheduler
@@ -577,6 +579,7 @@
             // 
             // tpViewScheduler
             // 
+            this.tpViewScheduler.Controls.Add(this.button1);
             this.tpViewScheduler.Location = new System.Drawing.Point(4, 22);
             this.tpViewScheduler.Name = "tpViewScheduler";
             this.tpViewScheduler.Padding = new System.Windows.Forms.Padding(3);
@@ -584,6 +587,16 @@
             this.tpViewScheduler.TabIndex = 1;
             this.tpViewScheduler.Text = "View";
             this.tpViewScheduler.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(144, 48);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 
@@ -612,6 +625,7 @@
             this.tabControlMonthlyMode.ResumeLayout(false);
             this.tabPageMonthlyDayOfMonth.ResumeLayout(false);
             this.tabPageMonthlyWeekDay.ResumeLayout(false);
+            this.tpViewScheduler.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -660,6 +674,7 @@
         private System.Windows.Forms.Label labelMonthlyMonth;
         private System.Windows.Forms.CheckedListBox checkedListBoxMonthlyMonths;
         private System.Windows.Forms.Button btRemove;
+        private System.Windows.Forms.Button button1;
     }
 }
 

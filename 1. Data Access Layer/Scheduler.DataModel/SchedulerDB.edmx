@@ -63,11 +63,11 @@
           <Property Name="SchedulerSettingsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SchedulerId" Type="int" Nullable="false" />
           <Property Name="ExecutionTime" Type="datetime" />
+          <Property Name="HourlyRecurrence" Type="int" />
           <Property Name="DailyRecurrence" Type="int" />
-          <Property Name="WeeklyRecurrence" Type="int" />
-          <Property Name="SelectedDaysOfWeek" Type="nvarchar" MaxLength="50" />
-          <Property Name="SelectedMonths" Type="nvarchar" MaxLength="50" />
-          <Property Name="SelectedDaysOfMonth" Type="nvarchar(max)" />
+          <Property Name="SelectedDayOfWeek" Type="int" />
+          <Property Name="SelectedMonth" Type="int" />
+          <Property Name="SelectedDayOfMonth" Type="int" />
         </EntityType>
         <Association Name="FK_Scheduler_Trigger">
           <End Role="TScheduler" Type="Self.TScheduler" Multiplicity="1" />
@@ -201,11 +201,11 @@
           <Property Name="SchedulerId" Type="Int32" Nullable="false" />
           <Property Name="ExecutionTime" Type="DateTime" Precision="3" />
           <Property Name="DailyRecurrence" Type="Int32" />
-          <Property Name="WeeklyRecurrence" Type="Int32" />
-          <Property Name="SelectedDaysOfWeek" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SelectedMonths" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SelectedDaysOfMonth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TScheduler" Relationship="SchedulerModel.FK_TriggerSettings_Trigger1" FromRole="TSchedulerSetting" ToRole="TScheduler" />
+          <Property Name="HourlyRecurrence" Type="Int32" />
+          <Property Name="SelectedDayOfWeek" Type="Int32" />
+          <Property Name="SelectedMonth" Type="Int32" />
+          <Property Name="SelectedDayOfMonth" Type="Int32" />
         </EntityType>
         <Association Name="FK_Scheduler_Trigger1">
           <End Type="SchedulerModel.TScheduler" Role="TScheduler" Multiplicity="1" />
@@ -306,10 +306,10 @@
           <EntitySetMapping Name="TSchedulerSettings">
             <EntityTypeMapping TypeName="SchedulerModel.TSchedulerSetting">
               <MappingFragment StoreEntitySet="TSchedulerSettings">
-                <ScalarProperty Name="SelectedDaysOfMonth" ColumnName="SelectedDaysOfMonth" />
-                <ScalarProperty Name="SelectedMonths" ColumnName="SelectedMonths" />
-                <ScalarProperty Name="SelectedDaysOfWeek" ColumnName="SelectedDaysOfWeek" />
-                <ScalarProperty Name="WeeklyRecurrence" ColumnName="WeeklyRecurrence" />
+                <ScalarProperty Name="SelectedDayOfMonth" ColumnName="SelectedDayOfMonth" />
+                <ScalarProperty Name="SelectedMonth" ColumnName="SelectedMonth" />
+                <ScalarProperty Name="SelectedDayOfWeek" ColumnName="SelectedDayOfWeek" />
+                <ScalarProperty Name="HourlyRecurrence" ColumnName="HourlyRecurrence" />
                 <ScalarProperty Name="DailyRecurrence" ColumnName="DailyRecurrence" />
                 <ScalarProperty Name="ExecutionTime" ColumnName="ExecutionTime" />
                 <ScalarProperty Name="SchedulerId" ColumnName="SchedulerId" />

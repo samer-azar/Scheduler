@@ -69,5 +69,15 @@
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\1. Data Access Layer\Scheduler.DataAccessLayer\Scheduler.DataAccessLayer.csproj">
+      <Project>{0b73898c-fe93-4d97-90ff-3a89f7959a1f}</Project>
+      <Name>Scheduler.DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\2. Business Logic Layer\Scheduler.BusinessLogicLibrary\Scheduler.BusinessLogicLibrary.csproj">
+      <Project>{542fce40-4040-4ff8-b4f6-a9363d361eb0}</Project>
+      <Name>Scheduler.BusinessLogicLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

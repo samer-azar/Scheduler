@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Scheduler.ClassLibrary.Model
+namespace Scheduler.BusinessLogicLibrary.Common
 {
     /// Log model
     public class SchedulerLog
@@ -27,6 +27,8 @@ namespace Scheduler.ClassLibrary.Model
         public int PartnerId { get; set; }
         /// Timestamp
         public DateTime ExecutionTimeStamp { get; set; }
+        /// Content(CLOB in DB)
+        public object Content { get; set; }
         /// Status
         public int Status { get; set; }
 

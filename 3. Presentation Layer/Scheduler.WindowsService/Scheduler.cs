@@ -1,4 +1,8 @@
-﻿using System.ServiceProcess;
+﻿
+using Scheduler.BusinessLogicLibrary.Common;
+using Scheduler.BusinessLogicLibrary.Model;
+using System.Collections.Generic;
+using System.ServiceProcess;
 using System.Threading.Tasks;
 using System.Timers;
 
@@ -12,11 +16,16 @@ namespace Scheduler.WindowsService
 
         #endregion
 
+        #region CONSTRUCTOR
 
         public Scheduler()
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region EVENT_HANDLERS
 
         protected override void OnStart(string[] args)
         {
@@ -27,6 +36,15 @@ namespace Scheduler.WindowsService
         {
         }
 
+        private async void OnTimedEvent(object source, ElapsedEventArgs e)
+        {
+            await Task.Run(() => ExecuteLogic());
+        }
+
+        #endregion
+
+        #region FORM_METHODS
+
         private void InitializeQueryTimer(int MilliSeconds)
         {
             _Timer = new Timer();
@@ -35,16 +53,14 @@ namespace Scheduler.WindowsService
             _Timer.Enabled = true;
         }
 
-        private async void OnTimedEvent(object source, ElapsedEventArgs e)
-        {
-            await Task.Run(() => ExecuteLogic());
-        }
-
         private async void ExecuteLogic()
         {
-            // Include periodic logic here
+            // Get scheduler settings
+            //List<BusinessLogicLibrary.Model.Scheduler> jobSchedulerSettings = SchedulerBlo.GetDetailedActiveSchedulers();
+
         }
 
+        #endregion
 
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Scheduler.ClassLibrary.Common
+namespace Scheduler.BusinessLogicLibrary.Common
 {
     /// Constants
     public class Constants

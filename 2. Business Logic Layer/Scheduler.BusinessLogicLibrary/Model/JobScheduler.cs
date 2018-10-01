@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Scheduler.ClassLibrary.Model
+namespace Scheduler.BusinessLogicLibrary.Common
 {
     /// Main scheduler
-    public class Scheduler
+    public class JobScheduler
     {
         /// Unique Id
         public int SchedulerId { get; set; }
@@ -20,9 +17,9 @@ namespace Scheduler.ClassLibrary.Model
         /// This is used to relate to specific modules, example referrals in PIO
         public int TransactionType { get; set; }
         /// Is it a payer, a Bank, a distributor...
-        public int PartnerId { get; set; }
+        public int PartnerType { get; set; }
         /// If it is a payer what is the PayerId...
-        public int RefID { get; set; }
+        public int PartnerId { get; set; }
         /// Date & time the scheduler is created
         public DateTime CreationDate { get; set; }
         /// Date & time the scheduler should start
@@ -34,6 +31,6 @@ namespace Scheduler.ClassLibrary.Model
         /// If the scheduler is enabled or not
         public bool Enabled { get; set; }
         /// Scheduler settings
-        public SchedulerSettings Settings { get; set; }
+        public List<SchedulerSettings> Settings { get; set; }
     }
 }

@@ -7,8 +7,8 @@
     <ProjectGuid>{542FCE40-4040-4FF8-B4F6-A9363D361EB0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Scheduler.ClassLibrary</RootNamespace>
-    <AssemblyName>Scheduler.ClassLibrary</AssemblyName>
+    <RootNamespace>Scheduler.BusinessLogicLibrary</RootNamespace>
+    <AssemblyName>Scheduler.BusinessLogicLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -44,13 +44,19 @@
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\Helper.cs" />
     <Compile Include="Common\MainLogic.cs" />
-    <Compile Include="Common\ServiceBlo.cs" />
+    <Compile Include="Common\SchedulerBlo.cs" />
     <Compile Include="Model\SchedulerExecution.cs" />
-    <Compile Include="Model\Scheduler.cs" />
+    <Compile Include="Model\JobScheduler.cs" />
+    <Compile Include="Model\SchedulerJoinedSettings.cs" />
     <Compile Include="Model\SchedulerLog.cs" />
     <Compile Include="Model\SchedulerSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\1. Data Access Layer\Scheduler.DataAccessLayer\Scheduler.DataAccessLayer.csproj">
+      <Project>{0b73898c-fe93-4d97-90ff-3a89f7959a1f}</Project>
+      <Name>Scheduler.DataAccessLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

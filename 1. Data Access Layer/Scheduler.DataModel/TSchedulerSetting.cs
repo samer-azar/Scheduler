@@ -18,10 +18,10 @@ namespace Scheduler.DataModel
         public int SchedulerId { get; set; }
         public Nullable<System.DateTime> ExecutionTime { get; set; }
         public Nullable<int> DailyRecurrence { get; set; }
-        public Nullable<int> WeeklyRecurrence { get; set; }
-        public string SelectedDaysOfWeek { get; set; }
-        public string SelectedMonths { get; set; }
-        public string SelectedDaysOfMonth { get; set; }
+        public Nullable<int> HourlyRecurrence { get; set; }
+        public Nullable<int> SelectedDayOfWeek { get; set; }
+        public Nullable<int> SelectedMonth { get; set; }
+        public Nullable<int> SelectedDayOfMonth { get; set; }
     
         public virtual TScheduler TScheduler { get; set; }
     }

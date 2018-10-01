@@ -1,4 +1,5 @@
-﻿using Scheduler.ClassLibrary.Common;
+﻿using Scheduler.BusinessLogicLibrary.Common;
+using Scheduler.BusinessLogicLibrary.Model;
 using Scheduler.DataModel;
 using Scheduler.Model;
 using System;
@@ -130,7 +131,71 @@ namespace Scheduler
             }
         }
 
+
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Declarations
+            SchedulerExecution execution;
+            List<JobScheduler> jobSchedulerSettings;
+            List<SchedulerExecution> schedulerExecutions;
+
+            // Map settings to nearest execution
+            jobSchedulerSettings = SchedulerBlo.GetDetailedActiveSchedulers();
+
+            if (jobSchedulerSettings != null)
+            {
+                // Get all scheduler executions(in TSchedulerExecution)
+                schedulerExecutions = SchedulerBlo.GetCurrentExecutions();
+
+                // Iterate through each setting
+                foreach (JobScheduler jobScheduler in jobSchedulerSettings)
+                {
+                    foreach (SchedulerSettings setting in jobScheduler.Settings)
+                    {
+                        // TODO: add the logics related to daily, weekly monthly... As for now logic runs everyday by specified hours
+                        // Try to find an execution row for this setting
+                        execution = schedulerExecutions.Where(x => x.SchedulerSettingsId == setting.SchedulerSettingsId).FirstOrDefault();
+                        if (execution == null)
+                        {
+                            // If the setting does not have the nearest corresponding row in TPioSchedulerExecution, create it
+                            execution = new SchedulerExecution(setting.SchedulerSettingsId,
+                                                               SetUpcomingSchedulerExecution(setting.ExecutionTime, jobScheduler.RecurrenceFrequency),
+                                                               (int)Enumerations.Status.Scheduled);
+                            SchedulerBlo.CreateExecution(out execution);
+
+                        }
+                        // If the setting has a nearest corresponding row in TPIOSchedulerExecution, run logic
+                    }
+                }
+            }
+        }
+
+
+        public DateTime SetUpcomingSchedulerExecution(DateTime dExecutionTime, int iRecurrenceFrequency)
+        {
+            switch (iRecurrenceFrequency)
+            {
+                case (int)Enumerations.RecurrenceFrequency.OneTime:
+                    break;
+                case (int)Enumerations.RecurrenceFrequency.ByHour:
+                    break;
+                case (int)Enumerations.RecurrenceFrequency.Hourly:
+                    break;
+                case (int)Enumerations.RecurrenceFrequency.Daily:
+                    break;
+                case (int)Enumerations.RecurrenceFrequency.Weekly:
+                    break;
+                case (int)Enumerations.RecurrenceFrequency.Monthly:
+                    break;
+                default:
+                    break;
+            }
+
+
+            return null;
+        }
 
 
     }

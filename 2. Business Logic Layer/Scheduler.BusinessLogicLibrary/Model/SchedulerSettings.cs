@@ -1,11 +1,6 @@
-﻿using Scheduler.ClassLibrary.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
-namespace Scheduler.ClassLibrary.Model
+namespace Scheduler.BusinessLogicLibrary.Common
 {
     /// Detailed settings of a scheduler
     public class SchedulerSettings
@@ -16,31 +11,18 @@ namespace Scheduler.ClassLibrary.Model
         public int SchedulerId { get; set; }
         /// Execution time
         public DateTime ExecutionTime { get; set; }
-    }
-
-    /// Daily scheduler settings
-    public class DailySchedulerSettings : SchedulerSettings
-    {
+        /// Occurs every x hours
+        public int HourlyRecurrence { get; set; }
         /// Occurs every x days
         public int DailyRecurrence { get; set; }
-    }
-
-    /// Weekly scheduler settings
-    public class WeeklySchedulerSettings : SchedulerSettings
-    {
         /// Occurs every x weeks
         public int WeeklyRecurrence { get; set; }
-        /// Days of week to be selected
-        public List<DayOfWeek> DaysOfWeek { get; set; }
-    }
-
-    /// Monthly scheduler settings
-    public class MonthlySchedulerSettings : SchedulerSettings
-    {
+        /// Day of week to be selected
+        public int SelectedDayOfWeek { get; set; }
         /// Months to be selected
-        public List<Enumerations.Month> Months { get; set; }
-        /// Days of month to be selected(1,2,...31,Last Day)
-        public List<object> DaysOfMonth { get; set; }
+        public int SelectedMonth { get; set; }
+        /// Day of month to be selected(1,2,...31,Last Day)
+        public int SelectedDayOfMonth { get; set; }
     }
 
 }
