@@ -2,6 +2,7 @@
 using Scheduler.BusinessLogicLibrary.Model;
 using Scheduler.DataAccessLayer.Common;
 using Scheduler.DataModel;
+using Scheduler.LoggerLibrary.Common;
 using Scheduler.Model;
 using System;
 using System.Collections.Generic;
@@ -140,10 +141,11 @@ namespace Scheduler
             try
             {
                 ManageSchedulerExecutions();
+                ExecuteLogic();
             }
             catch (Exception ex)
             {
-
+                Logger.Log(Logger.GetCurrentMethod(), ex.Message, ex.StackTrace);
                 throw;
             }
         }
@@ -159,7 +161,7 @@ namespace Scheduler
             List<SchedulerExecution> schedulerExecutions;
             List<SchedulerLog> lastSchedulerExecutionLogs;
 
-            // Get active schedulers & corresponding settings
+            // Get active schedulers with their corresponding settings
             jobSchedulers = SchedulerBlo.GetDetailedActiveSchedulers();
 
             if (jobSchedulers != null)
@@ -208,24 +210,58 @@ namespace Scheduler
                                     break;
 
                                 case (int)Enumerations.RecordActionStatus.Insert:
-                                    execution = new SchedulerExecution(setting.SchedulerSettingsId, dUpcomingExecution, (int)Enumerations.Status.Scheduled);
+                                    execution = new SchedulerExecution(setting.SchedulerSettingsId, jobScheduler.SchedulerId, dUpcomingExecution, (int)Enumerations.ExecutionStatus.Scheduled);
                                     SchedulerBlo.CreateExecution(ref execution);
                                     break;
 
                                 case (int)Enumerations.RecordActionStatus.Update:
-                                    execution = new SchedulerExecution(execution.SchedulerExecutionId, setting.SchedulerSettingsId, dUpcomingExecution, (int)Enumerations.Status.Scheduled);
+                                    execution = new SchedulerExecution(execution.SchedulerExecutionId, jobScheduler.SchedulerId, setting.SchedulerSettingsId, dUpcomingExecution, (int)Enumerations.ExecutionStatus.Scheduled);
                                     SchedulerBlo.UpdateExecution(execution);
                                     break;
 
                                 case (int)Enumerations.RecordActionStatus.Delete:
                                     break;
                             }
-
                         }
                     }
                 }
             }
         }
+
+        private void ExecuteLogic()
+        {
+            // Declarations
+            List<SchedulerExecution> schedulerExecutions;
+
+            // Get all scheduler executions(in TSchedulerExecution)
+            schedulerExecutions = SchedulerBlo.GetCurrentExecutions();
+
+            foreach (SchedulerExecution schedulerExecution in schedulerExecutions)
+            {
+                // If the execution is scheduled(pending), execute it
+                if (schedulerExecution.Status.Equals((int)Enumerations.ExecutionStatus.Scheduled))
+                {
+                    // When scheduler's execution time has passed, run logic
+                    if (schedulerExecution.ExecutionTimeStamp < DateTime.Now)
+                    {
+                        // Get 
+                    }
+                }
+            }
+
+
+
+            // Take the XML file from the shared folder, send to PIO
+
+            // Request from PIO the XML file and store it on the shared folder
+
+
+
+
+        }
+
+
+
 
     }
 }

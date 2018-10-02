@@ -61,7 +61,7 @@ namespace Scheduler.BusinessLogicLibrary.Common
             Outbound = 4
         }
 
-        public enum Status
+        public enum ExecutionStatus
         {
             Scheduled = 1,
             Sending = 2,

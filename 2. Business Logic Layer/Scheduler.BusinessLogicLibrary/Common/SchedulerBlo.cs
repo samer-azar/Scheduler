@@ -256,7 +256,7 @@ namespace Scheduler.BusinessLogicLibrary.Common
                         else
                         {
                             // If the execution is completed update the execution time, else keep
-                            if (oExecution.Status == (int)Enumerations.Status.Completed)
+                            if (oExecution.Status == (int)Enumerations.ExecutionStatus.Completed)
                             {
                                 // Flag that indicates that a new execution should replace the old one in TPioSchedulerExecution
                                 iRecordActionStatus = (int)Enumerations.RecordActionStatus.Update;
