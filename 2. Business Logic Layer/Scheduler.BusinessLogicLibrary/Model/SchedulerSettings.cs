@@ -23,6 +23,8 @@ namespace Scheduler.BusinessLogicLibrary.Common
         public int SelectedMonth { get; set; }
         /// Day of month to be selected(1,2,...31,Last Day)
         public int SelectedDayOfMonth { get; set; }
+        /// Enabled flag
+        public bool Enabled { get; set; }
     }
 
 }

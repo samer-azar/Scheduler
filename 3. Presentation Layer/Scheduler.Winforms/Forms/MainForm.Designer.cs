@@ -50,11 +50,10 @@
             this.tabPageOneTimeOnly = new System.Windows.Forms.TabPage();
             this.labelOneTimeOnlyDay = new System.Windows.Forms.Label();
             this.dateTimePickerOneTimeOnlyDay = new System.Windows.Forms.DateTimePicker();
-            this.tabPageByHour = new System.Windows.Forms.TabPage();
+            this.tabPageDaily = new System.Windows.Forms.TabPage();
             this.btRemove = new System.Windows.Forms.Button();
             this.lbHours = new System.Windows.Forms.ListBox();
             this.btnAddHour = new System.Windows.Forms.Button();
-            this.tabPageDaily = new System.Windows.Forms.TabPage();
             this.numericUpDownDaily = new System.Windows.Forms.NumericUpDown();
             this.labelDailyEvery = new System.Windows.Forms.Label();
             this.labelDailyDay = new System.Windows.Forms.Label();
@@ -71,13 +70,13 @@
             this.labelMonthlyMonth = new System.Windows.Forms.Label();
             this.checkedListBoxMonthlyMonths = new System.Windows.Forms.CheckedListBox();
             this.tpViewScheduler = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tcScheduler.SuspendLayout();
             this.tpAddScheduler.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControlMode.SuspendLayout();
             this.tabPageOneTimeOnly.SuspendLayout();
-            this.tabPageByHour.SuspendLayout();
             this.tabPageDaily.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDaily)).BeginInit();
             this.tabPageWeekly.SuspendLayout();
@@ -267,7 +266,6 @@
             this.tabControlMode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.tabControlMode.Controls.Add(this.tabPageOneTimeOnly);
-            this.tabControlMode.Controls.Add(this.tabPageByHour);
             this.tabControlMode.Controls.Add(this.tabPageDaily);
             this.tabControlMode.Controls.Add(this.tabPageWeekly);
             this.tabControlMode.Controls.Add(this.tabPageMonthly);
@@ -306,48 +304,11 @@
             this.dateTimePickerOneTimeOnlyDay.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerOneTimeOnlyDay.TabIndex = 1;
             // 
-            // tabPageByHour
-            // 
-            this.tabPageByHour.Controls.Add(this.btRemove);
-            this.tabPageByHour.Controls.Add(this.lbHours);
-            this.tabPageByHour.Controls.Add(this.btnAddHour);
-            this.tabPageByHour.Location = new System.Drawing.Point(4, 22);
-            this.tabPageByHour.Name = "tabPageByHour";
-            this.tabPageByHour.Size = new System.Drawing.Size(458, 224);
-            this.tabPageByHour.TabIndex = 5;
-            this.tabPageByHour.Text = "By Hour";
-            this.tabPageByHour.UseVisualStyleBackColor = true;
-            // 
-            // btRemove
-            // 
-            this.btRemove.Location = new System.Drawing.Point(86, 3);
-            this.btRemove.Name = "btRemove";
-            this.btRemove.Size = new System.Drawing.Size(75, 23);
-            this.btRemove.TabIndex = 60;
-            this.btRemove.Text = "Remove";
-            this.btRemove.UseVisualStyleBackColor = true;
-            this.btRemove.Click += new System.EventHandler(this.btRemove_Click);
-            // 
-            // lbHours
-            // 
-            this.lbHours.FormattingEnabled = true;
-            this.lbHours.Location = new System.Drawing.Point(6, 31);
-            this.lbHours.Name = "lbHours";
-            this.lbHours.Size = new System.Drawing.Size(449, 186);
-            this.lbHours.TabIndex = 59;
-            // 
-            // btnAddHour
-            // 
-            this.btnAddHour.Location = new System.Drawing.Point(5, 3);
-            this.btnAddHour.Name = "btnAddHour";
-            this.btnAddHour.Size = new System.Drawing.Size(75, 23);
-            this.btnAddHour.TabIndex = 0;
-            this.btnAddHour.Text = "Add hour";
-            this.btnAddHour.UseVisualStyleBackColor = true;
-            this.btnAddHour.Click += new System.EventHandler(this.btnAddHour_Click);
-            // 
             // tabPageDaily
             // 
+            this.tabPageDaily.Controls.Add(this.btRemove);
+            this.tabPageDaily.Controls.Add(this.lbHours);
+            this.tabPageDaily.Controls.Add(this.btnAddHour);
             this.tabPageDaily.Controls.Add(this.numericUpDownDaily);
             this.tabPageDaily.Controls.Add(this.labelDailyEvery);
             this.tabPageDaily.Controls.Add(this.labelDailyDay);
@@ -360,6 +321,32 @@
             this.tabPageDaily.Text = "Daily";
             this.tabPageDaily.UseVisualStyleBackColor = true;
             // 
+            // btRemove
+            // 
+            this.btRemove.Location = new System.Drawing.Point(115, 72);
+            this.btRemove.Name = "btRemove";
+            this.btRemove.Size = new System.Drawing.Size(86, 23);
+            this.btRemove.TabIndex = 63;
+            this.btRemove.Text = "Remove hour";
+            this.btRemove.UseVisualStyleBackColor = true;
+            // 
+            // lbHours
+            // 
+            this.lbHours.FormattingEnabled = true;
+            this.lbHours.Location = new System.Drawing.Point(24, 101);
+            this.lbHours.Name = "lbHours";
+            this.lbHours.Size = new System.Drawing.Size(401, 121);
+            this.lbHours.TabIndex = 62;
+            // 
+            // btnAddHour
+            // 
+            this.btnAddHour.Location = new System.Drawing.Point(23, 73);
+            this.btnAddHour.Name = "btnAddHour";
+            this.btnAddHour.Size = new System.Drawing.Size(86, 23);
+            this.btnAddHour.TabIndex = 61;
+            this.btnAddHour.Text = "Add hour";
+            this.btnAddHour.UseVisualStyleBackColor = true;
+            // 
             // numericUpDownDaily
             // 
             this.numericUpDownDaily.Location = new System.Drawing.Point(60, 18);
@@ -371,6 +358,11 @@
             this.numericUpDownDaily.Name = "numericUpDownDaily";
             this.numericUpDownDaily.Size = new System.Drawing.Size(49, 20);
             this.numericUpDownDaily.TabIndex = 0;
+            this.numericUpDownDaily.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // labelDailyEvery
             // 
@@ -579,6 +571,7 @@
             // 
             // tpViewScheduler
             // 
+            this.tpViewScheduler.Controls.Add(this.button2);
             this.tpViewScheduler.Controls.Add(this.button1);
             this.tpViewScheduler.Location = new System.Drawing.Point(4, 22);
             this.tpViewScheduler.Name = "tpViewScheduler";
@@ -587,6 +580,15 @@
             this.tpViewScheduler.TabIndex = 1;
             this.tpViewScheduler.Text = "View";
             this.tpViewScheduler.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(278, 262);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -614,7 +616,6 @@
             this.tabControlMode.ResumeLayout(false);
             this.tabPageOneTimeOnly.ResumeLayout(false);
             this.tabPageOneTimeOnly.PerformLayout();
-            this.tabPageByHour.ResumeLayout(false);
             this.tabPageDaily.ResumeLayout(false);
             this.tabPageDaily.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDaily)).EndInit();
@@ -654,9 +655,6 @@
         private System.Windows.Forms.TabPage tabPageOneTimeOnly;
         private System.Windows.Forms.Label labelOneTimeOnlyDay;
         private System.Windows.Forms.DateTimePicker dateTimePickerOneTimeOnlyDay;
-        private System.Windows.Forms.TabPage tabPageByHour;
-        private System.Windows.Forms.ListBox lbHours;
-        private System.Windows.Forms.Button btnAddHour;
         private System.Windows.Forms.TabPage tabPageDaily;
         private System.Windows.Forms.NumericUpDown numericUpDownDaily;
         private System.Windows.Forms.Label labelDailyEvery;
@@ -673,8 +671,11 @@
         private System.Windows.Forms.CheckedListBox checkedListBoxMonthlyWeekDay;
         private System.Windows.Forms.Label labelMonthlyMonth;
         private System.Windows.Forms.CheckedListBox checkedListBoxMonthlyMonths;
-        private System.Windows.Forms.Button btRemove;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btRemove;
+        private System.Windows.Forms.ListBox lbHours;
+        private System.Windows.Forms.Button btnAddHour;
     }
 }
 

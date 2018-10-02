@@ -1,5 +1,6 @@
 ﻿using Scheduler.BusinessLogicLibrary.Common;
 using Scheduler.BusinessLogicLibrary.Model;
+using Scheduler.DataAccessLayer.Common;
 using Scheduler.DataModel;
 using Scheduler.Model;
 using System;
@@ -136,67 +137,95 @@ namespace Scheduler
 
         private void button1_Click(object sender, EventArgs e)
         {
+            try
+            {
+                ManageSchedulerExecutions();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        private void ManageSchedulerExecutions()
+        {
             // Declarations
+            DateTime? dUpcomingExecution;
             SchedulerExecution execution;
-            List<JobScheduler> jobSchedulerSettings;
+            SchedulerLog executionLog;
+            SchedulerSettings oSetting;
+            List<JobScheduler> jobSchedulers;
             List<SchedulerExecution> schedulerExecutions;
+            List<SchedulerLog> lastSchedulerExecutionLogs;
 
-            // Map settings to nearest execution
-            jobSchedulerSettings = SchedulerBlo.GetDetailedActiveSchedulers();
+            // Get active schedulers & corresponding settings
+            jobSchedulers = SchedulerBlo.GetDetailedActiveSchedulers();
 
-            if (jobSchedulerSettings != null)
+            if (jobSchedulers != null)
             {
                 // Get all scheduler executions(in TSchedulerExecution)
                 schedulerExecutions = SchedulerBlo.GetCurrentExecutions();
 
-                // Iterate through each setting
-                foreach (JobScheduler jobScheduler in jobSchedulerSettings)
+                // Get latest scheduler execution logs(in TSchedulerExecutionLog)
+                lastSchedulerExecutionLogs = SchedulerBlo.GetLatestExecutionLogs();
+
+                // Iterate through each scheduler
+                foreach (JobScheduler jobScheduler in jobSchedulers)
                 {
-                    foreach (SchedulerSettings setting in jobScheduler.Settings)
+                    // Validate the scheduler end date
+                    if (jobScheduler.EndDate != null && jobScheduler.EndDate < DateTime.Now)
                     {
-                        // TODO: add the logics related to daily, weekly monthly... As for now logic runs everyday by specified hours
-                        // Try to find an execution row for this setting
-                        execution = schedulerExecutions.Where(x => x.SchedulerSettingsId == setting.SchedulerSettingsId).FirstOrDefault();
-                        if (execution == null)
+                        // Diable scheduler when end date has expired
+                        jobScheduler.Enabled = false;
+                        SchedulerBlo.SetSchedulerState(jobScheduler);
+                    }
+                    else
+                    {
+                        // Iterate through each scheduler setting
+                        foreach (SchedulerSettings setting in jobScheduler.Settings)
                         {
-                            // If the setting does not have the nearest corresponding row in TPioSchedulerExecution, create it
-                            execution = new SchedulerExecution(setting.SchedulerSettingsId,
-                                                               SetUpcomingSchedulerExecution(setting.ExecutionTime, jobScheduler.RecurrenceFrequency),
-                                                               (int)Enumerations.Status.Scheduled);
-                            SchedulerBlo.CreateExecution(out execution);
+                            // Try to find an execution for this setting
+                            execution = schedulerExecutions.Where(x => x.SchedulerSettingsId == setting.SchedulerSettingsId).FirstOrDefault();
+
+                            // Find the latest execution log for this setting
+                            executionLog = lastSchedulerExecutionLogs
+                                            .Where(x => x.SchedulerSettingsId == setting.SchedulerSettingsId)
+                                            .OrderByDescending(x => x.ExecutionTimeStamp)
+                                            .FirstOrDefault();
+
+                            // Assign setting to a new object in order to pass it as ref(since setting is a foreach iteration variable)
+                            oSetting = setting;
+
+                            // Get upcoming scheduler execution
+                            int action = 0;
+                            dUpcomingExecution = SchedulerBlo.GetUpcomingSchedulerExecution(jobScheduler.RecurrenceFrequency, ref execution,
+                                                                                            executionLog.ExecutionTimeStamp, ref oSetting, ref action);
+
+                            switch (action)
+                            {
+                                case (int)Enumerations.RecordActionStatus.Keep:
+                                    break;
+
+                                case (int)Enumerations.RecordActionStatus.Insert:
+                                    execution = new SchedulerExecution(setting.SchedulerSettingsId, dUpcomingExecution, (int)Enumerations.Status.Scheduled);
+                                    SchedulerBlo.CreateExecution(ref execution);
+                                    break;
+
+                                case (int)Enumerations.RecordActionStatus.Update:
+                                    execution = new SchedulerExecution(execution.SchedulerExecutionId, setting.SchedulerSettingsId, dUpcomingExecution, (int)Enumerations.Status.Scheduled);
+                                    SchedulerBlo.UpdateExecution(execution);
+                                    break;
+
+                                case (int)Enumerations.RecordActionStatus.Delete:
+                                    break;
+                            }
 
                         }
-                        // If the setting has a nearest corresponding row in TPIOSchedulerExecution, run logic
                     }
                 }
             }
         }
-
-
-        public DateTime SetUpcomingSchedulerExecution(DateTime dExecutionTime, int iRecurrenceFrequency)
-        {
-            switch (iRecurrenceFrequency)
-            {
-                case (int)Enumerations.RecurrenceFrequency.OneTime:
-                    break;
-                case (int)Enumerations.RecurrenceFrequency.ByHour:
-                    break;
-                case (int)Enumerations.RecurrenceFrequency.Hourly:
-                    break;
-                case (int)Enumerations.RecurrenceFrequency.Daily:
-                    break;
-                case (int)Enumerations.RecurrenceFrequency.Weekly:
-                    break;
-                case (int)Enumerations.RecurrenceFrequency.Monthly:
-                    break;
-                default:
-                    break;
-            }
-
-
-            return null;
-        }
-
 
     }
 }

@@ -51,8 +51,19 @@
   <ItemGroup>
     <Compile Include="Common\SchedulerDao.cs" />
     <Compile Include="Common\OracleDbAccess.cs" />
+    <Compile Include="Model\ISchedulerExecution.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\SqlServerDbAccess.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Scheduler.LoggerLibrary\Scheduler.LoggerLibrary.csproj">
+      <Project>{551d7a58-0e75-4c8d-9073-008ac1f2528a}</Project>
+      <Name>Scheduler.LoggerLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Scheduler.DataModel\Scheduler.DataModel.csproj">
+      <Project>{E3058B7F-0BD0-476F-9EC2-243F409BE5A3}</Project>
+      <Name>Scheduler.DataModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

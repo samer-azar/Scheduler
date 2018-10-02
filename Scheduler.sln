@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scheduler.Winforms", "3. Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scheduler.DataAccessLayer", "1. Data Access Layer\Scheduler.DataAccessLayer\Scheduler.DataAccessLayer.csproj", "{0B73898C-FE93-4D97-90FF-3A89F7959A1F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scheduler.LoggerLibrary", "Scheduler.LoggerLibrary\Scheduler.LoggerLibrary.csproj", "{551D7A58-0E75-4C8D-9073-008AC1F2528A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{0B73898C-FE93-4D97-90FF-3A89F7959A1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B73898C-FE93-4D97-90FF-3A89F7959A1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B73898C-FE93-4D97-90FF-3A89F7959A1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{551D7A58-0E75-4C8D-9073-008AC1F2528A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{551D7A58-0E75-4C8D-9073-008AC1F2528A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{551D7A58-0E75-4C8D-9073-008AC1F2528A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{551D7A58-0E75-4C8D-9073-008AC1F2528A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{08323912-C241-4088-B989-DFCD750E56E6} = {E4E93421-EEA2-4557-847F-4B8DF024693D}
 		{CD2E3095-1FAB-475A-9B28-07A21084D9AA} = {E4E93421-EEA2-4557-847F-4B8DF024693D}
 		{0B73898C-FE93-4D97-90FF-3A89F7959A1F} = {D46BDF13-6159-4FAE-9627-27D0C3E914E0}
+		{551D7A58-0E75-4C8D-9073-008AC1F2528A} = {EFC59505-2AD1-4C25-868F-16F01B486501}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7EE363E1-3C19-441D-8718-84C534B637AD}

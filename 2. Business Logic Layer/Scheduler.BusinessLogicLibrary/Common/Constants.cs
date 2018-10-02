@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Scheduler.LoggerLibrary.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 namespace Scheduler.BusinessLogicLibrary.Common
 {
     /// Constants
-    public class Constants
+    public class Constants 
     {
-
+        
 
     }
 
@@ -19,11 +20,9 @@ namespace Scheduler.BusinessLogicLibrary.Common
         public enum RecurrenceFrequency
         {
             OneTime = 1,
-            ByHour = 2,
-            Hourly = 3,
-            Daily = 4,
-            Weekly = 5,
-            Monthly = 6
+            Daily = 2,
+            Weekly = 3,
+            Monthly = 4
         }
 
         public enum Month
@@ -71,6 +70,13 @@ namespace Scheduler.BusinessLogicLibrary.Common
             Failed = 5
         }
 
+        public enum RecordActionStatus
+        {
+            Keep = 1,
+            Insert = 2,
+            Update = 3,
+            Delete = 4
+        }
 
     }
 }

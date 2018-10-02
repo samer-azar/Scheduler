@@ -13,6 +13,8 @@ namespace Scheduler.BusinessLogicLibrary.Common
         public int SchedulerLogId { get; set; }
         /// FK: TSchedulerExecution
         public int SchedulerExecutionId { get; set; }
+        /// FK: TSchedulerSettings
+        public int SchedulerSettingsId { get; set; }
         /// FK: TScheduler
         public int SchedulerId { get; set; }
         /// Scheduler name
@@ -31,6 +33,5 @@ namespace Scheduler.BusinessLogicLibrary.Common
         public object Content { get; set; }
         /// Status
         public int Status { get; set; }
-
     }
 }
