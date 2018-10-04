@@ -243,7 +243,7 @@ namespace Scheduler
                 // If the execution is scheduled(pending) and execution time has passed, run logic
                 if (schedulerExecution.Status.Equals((int)Enumerations.ExecutionStatus.Scheduled)
                     && schedulerExecution.ExecutionTimeStamp < DateTime.Now)
-                {
+                { 
                     // Get the corresponding job scheduler
                     jobScheculer = SchedulerBlo.GetJobScheduler(schedulerExecution.SchedulerId);
 
