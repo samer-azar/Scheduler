@@ -114,12 +114,8 @@
       <Project>{542fce40-4040-4ff8-b4f6-a9363d361eb0}</Project>
       <Name>Scheduler.BusinessLogicLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\1. Data Access Layer\Scheduler.DataModel\Scheduler.DataModel.csproj">
-      <Project>{e3058b7f-0bd0-476f-9ec2-243f409be5a3}</Project>
-      <Name>Scheduler.DataModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Scheduler.LoggerLibrary\Scheduler.LoggerLibrary.csproj">
-      <Project>{551d7a58-0e75-4c8d-9073-008ac1f2528a}</Project>
+    <ProjectReference Include="..\..\2. Business Logic Layer\Scheduler.LoggerLibrary\Scheduler.LoggerLibrary.csproj">
+      <Project>{551D7A58-0E75-4C8D-9073-008AC1F2528A}</Project>
       <Name>Scheduler.LoggerLibrary</Name>
     </ProjectReference>
   </ItemGroup>

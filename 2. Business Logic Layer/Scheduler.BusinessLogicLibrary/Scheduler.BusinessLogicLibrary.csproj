@@ -57,14 +57,6 @@
       <Project>{0b73898c-fe93-4d97-90ff-3a89f7959a1f}</Project>
       <Name>Scheduler.DataAccessLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\1. Data Access Layer\Scheduler.DataModel\Scheduler.DataModel.csproj">
-      <Project>{e3058b7f-0bd0-476f-9ec2-243f409be5a3}</Project>
-      <Name>Scheduler.DataModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Scheduler.LoggerLibrary\Scheduler.LoggerLibrary.csproj">
-      <Project>{551d7a58-0e75-4c8d-9073-008ac1f2528a}</Project>
-      <Name>Scheduler.LoggerLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

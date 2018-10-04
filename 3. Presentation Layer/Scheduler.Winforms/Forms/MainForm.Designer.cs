@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnAddScheduler = new System.Windows.Forms.Button();
             this.tcScheduler = new System.Windows.Forms.TabControl();
             this.tpAddScheduler = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -71,6 +70,7 @@
             this.checkedListBoxMonthlyMonths = new System.Windows.Forms.CheckedListBox();
             this.tpViewScheduler = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnAddScheduler = new System.Windows.Forms.Button();
             this.tcScheduler.SuspendLayout();
             this.tpAddScheduler.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -86,17 +86,6 @@
             this.tpViewScheduler.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnAddScheduler
-            // 
-            this.btnAddScheduler.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddScheduler.Location = new System.Drawing.Point(12, 637);
-            this.btnAddScheduler.Name = "btnAddScheduler";
-            this.btnAddScheduler.Size = new System.Drawing.Size(97, 23);
-            this.btnAddScheduler.TabIndex = 64;
-            this.btnAddScheduler.Text = "Add";
-            this.btnAddScheduler.UseVisualStyleBackColor = true;
-            this.btnAddScheduler.Click += new System.EventHandler(this.btnAddScheduler_Click);
-            // 
             // tcScheduler
             // 
             this.tcScheduler.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -107,18 +96,19 @@
             this.tcScheduler.Location = new System.Drawing.Point(12, 12);
             this.tcScheduler.Name = "tcScheduler";
             this.tcScheduler.SelectedIndex = 0;
-            this.tcScheduler.Size = new System.Drawing.Size(486, 610);
+            this.tcScheduler.Size = new System.Drawing.Size(486, 655);
             this.tcScheduler.TabIndex = 65;
             this.tcScheduler.Tag = "";
             // 
             // tpAddScheduler
             // 
+            this.tpAddScheduler.Controls.Add(this.btnAddScheduler);
             this.tpAddScheduler.Controls.Add(this.groupBox1);
             this.tpAddScheduler.Controls.Add(this.tabControlMode);
             this.tpAddScheduler.Location = new System.Drawing.Point(4, 22);
             this.tpAddScheduler.Name = "tpAddScheduler";
             this.tpAddScheduler.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAddScheduler.Size = new System.Drawing.Size(478, 584);
+            this.tpAddScheduler.Size = new System.Drawing.Size(478, 629);
             this.tpAddScheduler.TabIndex = 0;
             this.tpAddScheduler.Text = "Add";
             this.tpAddScheduler.UseVisualStyleBackColor = true;
@@ -271,7 +261,7 @@
             this.tabControlMode.Location = new System.Drawing.Point(6, 323);
             this.tabControlMode.Name = "tabControlMode";
             this.tabControlMode.SelectedIndex = 0;
-            this.tabControlMode.Size = new System.Drawing.Size(466, 250);
+            this.tabControlMode.Size = new System.Drawing.Size(466, 261);
             this.tabControlMode.TabIndex = 64;
             // 
             // tabPageOneTimeOnly
@@ -281,7 +271,7 @@
             this.tabPageOneTimeOnly.Location = new System.Drawing.Point(4, 22);
             this.tabPageOneTimeOnly.Name = "tabPageOneTimeOnly";
             this.tabPageOneTimeOnly.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageOneTimeOnly.Size = new System.Drawing.Size(458, 224);
+            this.tabPageOneTimeOnly.Size = new System.Drawing.Size(458, 235);
             this.tabPageOneTimeOnly.TabIndex = 0;
             this.tabPageOneTimeOnly.Tag = "1";
             this.tabPageOneTimeOnly.Text = "One time only";
@@ -574,7 +564,7 @@
             this.tpViewScheduler.Location = new System.Drawing.Point(4, 22);
             this.tpViewScheduler.Name = "tpViewScheduler";
             this.tpViewScheduler.Padding = new System.Windows.Forms.Padding(3);
-            this.tpViewScheduler.Size = new System.Drawing.Size(478, 584);
+            this.tpViewScheduler.Size = new System.Drawing.Size(478, 629);
             this.tpViewScheduler.TabIndex = 1;
             this.tpViewScheduler.Text = "View";
             this.tpViewScheduler.UseVisualStyleBackColor = true;
@@ -589,13 +579,23 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btnAddScheduler
+            // 
+            this.btnAddScheduler.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddScheduler.Location = new System.Drawing.Point(6, 600);
+            this.btnAddScheduler.Name = "btnAddScheduler";
+            this.btnAddScheduler.Size = new System.Drawing.Size(97, 23);
+            this.btnAddScheduler.TabIndex = 66;
+            this.btnAddScheduler.Text = "Add";
+            this.btnAddScheduler.UseVisualStyleBackColor = true;
+            this.btnAddScheduler.Click += new System.EventHandler(this.btnAddScheduler_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(510, 672);
             this.Controls.Add(this.tcScheduler);
-            this.Controls.Add(this.btnAddScheduler);
             this.Name = "MainForm";
             this.Text = "Scheduler";
             this.tcScheduler.ResumeLayout(false);
@@ -621,7 +621,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnAddScheduler;
         private System.Windows.Forms.TabControl tcScheduler;
         private System.Windows.Forms.TabPage tpAddScheduler;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -664,6 +663,7 @@
         private System.Windows.Forms.Button btRemove;
         private System.Windows.Forms.ListBox lbHours;
         private System.Windows.Forms.Button btnAddHour;
+        private System.Windows.Forms.Button btnAddScheduler;
     }
 }
 

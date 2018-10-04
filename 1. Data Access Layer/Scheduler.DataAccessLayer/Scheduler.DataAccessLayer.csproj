@@ -56,13 +56,9 @@
     <Compile Include="Common\SqlServerDbAccess.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Scheduler.LoggerLibrary\Scheduler.LoggerLibrary.csproj">
-      <Project>{551d7a58-0e75-4c8d-9073-008ac1f2528a}</Project>
+    <ProjectReference Include="..\..\2. Business Logic Layer\Scheduler.LoggerLibrary\Scheduler.LoggerLibrary.csproj">
+      <Project>{551D7A58-0E75-4C8D-9073-008AC1F2528A}</Project>
       <Name>Scheduler.LoggerLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Scheduler.DataModel\Scheduler.DataModel.csproj">
-      <Project>{E3058B7F-0BD0-476F-9EC2-243F409BE5A3}</Project>
-      <Name>Scheduler.DataModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

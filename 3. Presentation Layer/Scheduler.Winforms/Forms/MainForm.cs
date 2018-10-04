@@ -1,7 +1,4 @@
 ﻿using Scheduler.BusinessLogicLibrary.Common;
-using Scheduler.BusinessLogicLibrary.Model;
-using Scheduler.DataAccessLayer.Common;
-using Scheduler.DataModel;
 using Scheduler.LoggerLibrary.Common;
 using Scheduler.Model;
 using System;
@@ -96,10 +93,10 @@ namespace Scheduler
         private void btnAddScheduler_Click(object sender, EventArgs e)
         {
             // Temporarily hard-coded
-            TScheduler scheduler = new TScheduler();
+            JobScheduler scheduler = new JobScheduler();
             scheduler.Name = "schedulerTest1";
             scheduler.Description = "";
-            scheduler.ActionType = 1;
+            scheduler.ActionTye = 1;
             scheduler.TransactionType = 1;
             scheduler.PartnerType = 2;
             scheduler.PartnerId = 301;
@@ -313,10 +310,6 @@ namespace Scheduler
             */
 
         }
-
-
-
-
 
 
     }
