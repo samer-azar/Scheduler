@@ -32,6 +32,44 @@ namespace Scheduler.BusinessLogicLibrary.Common
             return schedulerList;
         }
 
+        public static JobScheduler GetJobScheduler(int schedulerId)
+        {
+            JobScheduler scheduler = null;
+            DataSet dsScheduler = SchedulerDao.GetJobScheduler(schedulerId);
+
+            if (dsScheduler != null)
+            {
+                if (dsScheduler.Tables[0].Rows.Count > 0)
+                {
+                    scheduler = new JobScheduler();
+                    DataRow schedulerRow = dsScheduler.Tables[0].Rows[0];
+                    int.TryParse(schedulerRow["SchedulerId"].ToString(), out int iSchedulerId);
+                    scheduler.SchedulerId = iSchedulerId;
+                    scheduler.Name = schedulerRow["Name"].ToString();
+                    scheduler.Description = schedulerRow["description"].ToString();
+                    int.TryParse(schedulerRow["Actiontype"].ToString(), out int iActionTye);
+                    scheduler.ActionTye = iActionTye;
+                    int.TryParse(schedulerRow["TransactionType"].ToString(), out int iTransactionType);
+                    scheduler.TransactionType = iTransactionType;
+                    int.TryParse(schedulerRow["PartnerType"].ToString(), out int iPartnerType);
+                    scheduler.PartnerType = iPartnerType;
+                    int.TryParse(schedulerRow["PartnerId"].ToString(), out int iPartnerId);
+                    scheduler.PartnerId = iPartnerId;
+                    DateTime.TryParse(schedulerRow["CreationDate"].ToString(), out DateTime dCreationDate);
+                    scheduler.CreationDate = dCreationDate;
+                    DateTime.TryParse(schedulerRow["StartDate"].ToString(), out DateTime dStartDate);
+                    scheduler.StartDate = dStartDate;
+                    DateTime.TryParse(schedulerRow["EndDate"].ToString(), out DateTime dEndDate);
+                    scheduler.EndDate = dEndDate;
+                    int.TryParse(schedulerRow["RecurrenceFrequency"].ToString(), out int iRecurrenceFrequency);
+                    scheduler.RecurrenceFrequency = iRecurrenceFrequency;
+                    bool.TryParse(schedulerRow["Enabled"].ToString(), out bool bEnabled);
+                    scheduler.Enabled = bEnabled;
+                }
+            }
+            return scheduler;
+        }
+
         public static List<JobScheduler> GetActiveSchedulers()
         {
             JobScheduler scheduler;
@@ -210,7 +248,6 @@ namespace Scheduler.BusinessLogicLibrary.Common
             }
             return schedulerExecutionLogs;
         }
-
 
         /// <summary>
         /// Get upcoming scheduler execution

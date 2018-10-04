@@ -49,6 +49,48 @@ namespace Scheduler.DataAccessLayer.Common
             return dsSchedulers;
         }
 
+        public static DataSet GetJobScheduler(int iSchedulerId)
+        {
+            OracleDbAccess dbAccess = new OracleDbAccess();
+            OracleConnection oracleConnection;
+            OracleDataAdapter dataAdapter = new OracleDataAdapter();
+            OracleCommand command = new OracleCommand();
+            DataSet dsScheduler = null;
+
+            try
+            {
+                // Get the connection
+                oracleConnection = dbAccess.GetConnection();
+
+                // Set the procedure name
+                command = new OracleCommand("CPIO.SP_PIO_GetJobScheduler", oracleConnection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                // Add parameters and assign them to values
+                command.Parameters.Add("iSchedulerId", OracleDbType.Int32).Value = iSchedulerId;
+
+                // Cursor returned
+                command.Parameters.Add("oRefCursor", OracleDbType.RefCursor, ParameterDirection.InputOutput);
+
+                // Open the connection
+                dbAccess.OpenConnection(oracleConnection);
+
+                // Execute procedure
+                command.ExecuteNonQuery();
+
+                // Fill dataset
+                dataAdapter = new OracleDataAdapter(command);
+                dsScheduler = new DataSet();
+                dataAdapter.Fill(dsScheduler);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(Logger.GetCurrentMethod(), ex.Message, ex.StackTrace);
+                dsScheduler = null;
+            }
+            return dsScheduler;
+        }
+
         /// Get active schedulerSettings from TSchedulerSettings table
         public static DataSet GetActiveSchedulerSettings()
         {

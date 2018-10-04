@@ -23,11 +23,11 @@ namespace Scheduler.LoggerLibrary.Common
             try
             {
                 fileName = string.Format("LOGS_{0}_{1}_{2}.txt", DateTime.Today.Month.ToString("00"), DateTime.Today.Day.ToString("00"), DateTime.Today.Year);
-                fullPath = Path.Combine(Constants._LogFilePath, fileName);
+                fullPath = Path.Combine(ConstantValues._LogFilePath, fileName);
 
                 //Manually create the directories if path or part of the path does not exist
-                if (!Directory.Exists(Constants._LogFilePath))
-                    Directory.CreateDirectory(Constants._LogFilePath);
+                if (!Directory.Exists(ConstantValues._LogFilePath))
+                    Directory.CreateDirectory(ConstantValues._LogFilePath);
 
                 //Automatically create the file if does not exist and write/append log to it
                 using (StreamWriter file = new StreamWriter(fullPath, true))

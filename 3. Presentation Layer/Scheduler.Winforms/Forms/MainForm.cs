@@ -7,6 +7,7 @@ using Scheduler.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Windows.Forms;
 
 namespace Scheduler
@@ -231,6 +232,7 @@ namespace Scheduler
         private void ExecuteLogic()
         {
             // Declarations
+            JobScheduler jobScheculer;
             List<SchedulerExecution> schedulerExecutions;
 
             // Get all scheduler executions(in TSchedulerExecution)
@@ -238,14 +240,29 @@ namespace Scheduler
 
             foreach (SchedulerExecution schedulerExecution in schedulerExecutions)
             {
-                // If the execution is scheduled(pending), execute it
-                if (schedulerExecution.Status.Equals((int)Enumerations.ExecutionStatus.Scheduled))
+                // If the execution is scheduled(pending) and execution time has passed, run logic
+                if (schedulerExecution.Status.Equals((int)Enumerations.ExecutionStatus.Scheduled)
+                    && schedulerExecution.ExecutionTimeStamp < DateTime.Now)
                 {
-                    // When scheduler's execution time has passed, run logic
-                    if (schedulerExecution.ExecutionTimeStamp < DateTime.Now)
+                    // Get the corresponding job scheduler
+                    jobScheculer = SchedulerBlo.GetJobScheduler(schedulerExecution.SchedulerId);
+
+                    using (var client = new HttpClient())
                     {
-                        // Get 
+
+                        /*
+                        client.BaseAddress = new Uri(Helper.GetRegistryKeyValue(Constants._PioRegistryPath, Constants._AccountPayableApiPath));
+                        var content = new StringContent(JsonConvert.SerializeXmlNode(xmlDocument, Newtonsoft.Json.Formatting.None, true), Encoding.UTF8, "application/json");
+                        var response = client.PostAsync(string.Format("{0}{1}", client.BaseAddress, Helper.GetRegistryKeyValue(Constants.RegistryPathes._PioPath, Constants.RegistryPathes._ReferralRoute)), content).Result;
+
+                        if (!response.IsSuccessStatusCode)
+                            referralResponse = new Referral_Response(Constants.RequestAcknowledgement._RejectXmlRequest, Constants.ExceptionMessages._ExceptionOccured);
+                        else
+                            referralResponse = JsonConvert.DeserializeObject<Referral_Response>(response.Content.ReadAsStringAsync().Result);
+                        */
+
                     }
+
                 }
             }
 
@@ -254,11 +271,50 @@ namespace Scheduler
             // Take the XML file from the shared folder, send to PIO
 
             // Request from PIO the XML file and store it on the shared folder
+            // File Name:       TATAPPO_<<PoNum>><<Date of File PreparationYYYYMMDD>>_<<incremental#>>.XML
+            //              RES_TATAPPO_<<PoNum>><<Date of File PreparationYYYYMMDD>>_<<incremental#>>.XML
 
 
+            /*
+            switch (jobScheculer.PartnerType)
+                    {
+                        case (int)Enumerations.PartnerType.Bank:
+                            break;
+                        case (int)Enumerations.PartnerType.Payer:
+                            break;
+                        case (int)Enumerations.PartnerType.Sprovider:
+                            break;
+                        case (int)Enumerations.PartnerType.NApplicable:
+                            break;
+                        case (int)Enumerations.PartnerType.Distributor:
+                            break;
+                        case (int)Enumerations.PartnerType.Reinsurer:
+                            break;
+                        case (int)Enumerations.PartnerType.HealthProvider:
+                            break;
+                    }
 
+                    switch (jobScheculer.ActionTye)
+                    {
+                        case (int)Enumerations.ActionType.Push:
+                            // Push data from NC DBs to shared folder accessed by client via SFTP
+
+                            break;
+
+                        case (int)Enumerations.ActionType.Pull:
+                            break;
+
+                        case (int)Enumerations.ActionType.Inbound:
+                            break;
+
+                        case (int)Enumerations.ActionType.Outbound:
+                            break;
+                    }
+            */
 
         }
+
+
 
 
 

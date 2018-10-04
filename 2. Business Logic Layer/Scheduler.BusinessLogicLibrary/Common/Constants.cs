@@ -10,8 +10,8 @@ namespace Scheduler.BusinessLogicLibrary.Common
     /// Constants
     public class Constants 
     {
-        
-
+        public const string _PioRegistryPath = "SOFTWARE\\TATSH\\PIO";
+        public const string _AccountPayableApiPath = "AccountPayableApiPath";
     }
 
     /// Enumerations
