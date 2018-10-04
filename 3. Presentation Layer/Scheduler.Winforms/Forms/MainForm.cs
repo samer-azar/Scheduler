@@ -234,7 +234,7 @@ namespace Scheduler
 
             // Get all scheduler executions(in TSchedulerExecution)
             schedulerExecutions = SchedulerBlo.GetCurrentExecutions();
-
+             
             foreach (SchedulerExecution schedulerExecution in schedulerExecutions)
             {
                 // If the execution is scheduled(pending) and execution time has passed, run logic
