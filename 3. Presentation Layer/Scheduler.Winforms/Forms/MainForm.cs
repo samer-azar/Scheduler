@@ -3,7 +3,9 @@ using Scheduler.LoggerLibrary.Common;
 using Scheduler.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Windows.Forms;
 
@@ -244,21 +246,22 @@ namespace Scheduler
                     // Get the corresponding job scheduler
                     jobScheculer = SchedulerBlo.GetJobScheduler(schedulerExecution.SchedulerId);
 
+
+                    ClientGet(Helper.GetRegistryKeyValue(Constants._PioRegistryPath, Constants._AccountPayableApiPath));
+
+                    /*
                     using (var client = new HttpClient())
                     {
-
-                        /*
                         client.BaseAddress = new Uri(Helper.GetRegistryKeyValue(Constants._PioRegistryPath, Constants._AccountPayableApiPath));
                         var content = new StringContent(JsonConvert.SerializeXmlNode(xmlDocument, Newtonsoft.Json.Formatting.None, true), Encoding.UTF8, "application/json");
-                        var response = client.PostAsync(string.Format("{0}{1}", client.BaseAddress, Helper.GetRegistryKeyValue(Constants.RegistryPathes._PioPath, Constants.RegistryPathes._ReferralRoute)), content).Result;
-
+                        //var response = client.PostAsync(string.Format("{0}{1}", client.BaseAddress, Helper.GetRegistryKeyValue(Constants.RegistryPathes._PioPath, Constants.RegistryPathes._ReferralRoute)), content).Result;
+                        var result = await client.GetAsync("http://localhost:56908/api/vendor/" + uname + "/" + pass);
                         if (!response.IsSuccessStatusCode)
                             referralResponse = new Referral_Response(Constants.RequestAcknowledgement._RejectXmlRequest, Constants.ExceptionMessages._ExceptionOccured);
                         else
                             referralResponse = JsonConvert.DeserializeObject<Referral_Response>(response.Content.ReadAsStringAsync().Result);
-                        */
-
-                    }
+                        
+                    }*/
 
                 }
             }
@@ -310,6 +313,31 @@ namespace Scheduler
             */
 
         }
+
+
+        public string ClientGet(string url)
+        {
+            var request = (HttpWebRequest)WebRequest.Create(url);
+
+            request.Method = "GET";
+            var content = string.Empty;
+
+            using (var response = (HttpWebResponse)request.GetResponse())
+            {
+                using (var stream = response.GetResponseStream())
+                {
+                    using (var sr = new StreamReader(stream))
+                    {
+                        content = sr.ReadToEnd();
+                    }
+                }
+            }
+
+            return content;
+        }
+
+
+
 
 
     }
