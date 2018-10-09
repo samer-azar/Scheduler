@@ -248,7 +248,7 @@ namespace Scheduler
 
 
                     ClientGet(Helper.GetRegistryKeyValue(Constants._PioRegistryPath, Constants._AccountPayableApiPath));
-
+                     
                     /*
                     using (var client = new HttpClient())
                     {
