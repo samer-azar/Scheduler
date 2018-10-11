@@ -30,6 +30,7 @@
         {
             this.tcScheduler = new System.Windows.Forms.TabControl();
             this.tpAddScheduler = new System.Windows.Forms.TabPage();
+            this.btnAddScheduler = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ddlRecurrence = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -70,7 +71,7 @@
             this.checkedListBoxMonthlyMonths = new System.Windows.Forms.CheckedListBox();
             this.tpViewScheduler = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
-            this.btnAddScheduler = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.tcScheduler.SuspendLayout();
             this.tpAddScheduler.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -112,6 +113,17 @@
             this.tpAddScheduler.TabIndex = 0;
             this.tpAddScheduler.Text = "Add";
             this.tpAddScheduler.UseVisualStyleBackColor = true;
+            // 
+            // btnAddScheduler
+            // 
+            this.btnAddScheduler.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddScheduler.Location = new System.Drawing.Point(6, 600);
+            this.btnAddScheduler.Name = "btnAddScheduler";
+            this.btnAddScheduler.Size = new System.Drawing.Size(97, 23);
+            this.btnAddScheduler.TabIndex = 66;
+            this.btnAddScheduler.Text = "Add";
+            this.btnAddScheduler.UseVisualStyleBackColor = true;
+            this.btnAddScheduler.Click += new System.EventHandler(this.btnAddScheduler_Click);
             // 
             // groupBox1
             // 
@@ -304,7 +316,7 @@
             this.tabPageDaily.Location = new System.Drawing.Point(4, 22);
             this.tabPageDaily.Name = "tabPageDaily";
             this.tabPageDaily.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageDaily.Size = new System.Drawing.Size(458, 224);
+            this.tabPageDaily.Size = new System.Drawing.Size(458, 235);
             this.tabPageDaily.TabIndex = 1;
             this.tabPageDaily.Tag = "2";
             this.tabPageDaily.Text = "Daily";
@@ -377,7 +389,7 @@
             this.tabPageWeekly.Controls.Add(this.checkedListBoxWeeklyDays);
             this.tabPageWeekly.Location = new System.Drawing.Point(4, 22);
             this.tabPageWeekly.Name = "tabPageWeekly";
-            this.tabPageWeekly.Size = new System.Drawing.Size(458, 224);
+            this.tabPageWeekly.Size = new System.Drawing.Size(458, 235);
             this.tabPageWeekly.TabIndex = 3;
             this.tabPageWeekly.Tag = "3";
             this.tabPageWeekly.Text = "Weekly";
@@ -415,7 +427,7 @@
             this.tabPageMonthly.Controls.Add(this.checkedListBoxMonthlyMonths);
             this.tabPageMonthly.Location = new System.Drawing.Point(4, 22);
             this.tabPageMonthly.Name = "tabPageMonthly";
-            this.tabPageMonthly.Size = new System.Drawing.Size(458, 224);
+            this.tabPageMonthly.Size = new System.Drawing.Size(458, 235);
             this.tabPageMonthly.TabIndex = 2;
             this.tabPageMonthly.Text = "Monthly";
             this.tabPageMonthly.UseVisualStyleBackColor = true;
@@ -429,7 +441,7 @@
             this.tabControlMonthlyMode.Location = new System.Drawing.Point(186, 20);
             this.tabControlMonthlyMode.Name = "tabControlMonthlyMode";
             this.tabControlMonthlyMode.SelectedIndex = 0;
-            this.tabControlMonthlyMode.Size = new System.Drawing.Size(251, 184);
+            this.tabControlMonthlyMode.Size = new System.Drawing.Size(251, 195);
             this.tabControlMonthlyMode.TabIndex = 1;
             // 
             // tabPageMonthlyDayOfMonth
@@ -438,7 +450,7 @@
             this.tabPageMonthlyDayOfMonth.Location = new System.Drawing.Point(4, 22);
             this.tabPageMonthlyDayOfMonth.Name = "tabPageMonthlyDayOfMonth";
             this.tabPageMonthlyDayOfMonth.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageMonthlyDayOfMonth.Size = new System.Drawing.Size(243, 158);
+            this.tabPageMonthlyDayOfMonth.Size = new System.Drawing.Size(243, 169);
             this.tabPageMonthlyDayOfMonth.TabIndex = 0;
             this.tabPageMonthlyDayOfMonth.Text = "Day of Month";
             this.tabPageMonthlyDayOfMonth.UseVisualStyleBackColor = true;
@@ -493,7 +505,7 @@
             this.tabPageMonthlyWeekDay.Location = new System.Drawing.Point(4, 22);
             this.tabPageMonthlyWeekDay.Name = "tabPageMonthlyWeekDay";
             this.tabPageMonthlyWeekDay.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageMonthlyWeekDay.Size = new System.Drawing.Size(243, 158);
+            this.tabPageMonthlyWeekDay.Size = new System.Drawing.Size(243, 169);
             this.tabPageMonthlyWeekDay.TabIndex = 1;
             this.tabPageMonthlyWeekDay.Text = "Weekday";
             this.tabPageMonthlyWeekDay.UseVisualStyleBackColor = true;
@@ -560,6 +572,7 @@
             // 
             // tpViewScheduler
             // 
+            this.tpViewScheduler.Controls.Add(this.button2);
             this.tpViewScheduler.Controls.Add(this.button1);
             this.tpViewScheduler.Location = new System.Drawing.Point(4, 22);
             this.tpViewScheduler.Name = "tpViewScheduler";
@@ -579,16 +592,15 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // btnAddScheduler
+            // button2
             // 
-            this.btnAddScheduler.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddScheduler.Location = new System.Drawing.Point(6, 600);
-            this.btnAddScheduler.Name = "btnAddScheduler";
-            this.btnAddScheduler.Size = new System.Drawing.Size(97, 23);
-            this.btnAddScheduler.TabIndex = 66;
-            this.btnAddScheduler.Text = "Add";
-            this.btnAddScheduler.UseVisualStyleBackColor = true;
-            this.btnAddScheduler.Click += new System.EventHandler(this.btnAddScheduler_Click);
+            this.button2.Location = new System.Drawing.Point(202, 303);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainForm
             // 
@@ -664,6 +676,7 @@
         private System.Windows.Forms.ListBox lbHours;
         private System.Windows.Forms.Button btnAddHour;
         private System.Windows.Forms.Button btnAddScheduler;
+        private System.Windows.Forms.Button button2;
     }
 }
 

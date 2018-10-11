@@ -1,7 +1,4 @@
 ﻿
-using Scheduler.BusinessLogicLibrary.Common;
-using Scheduler.BusinessLogicLibrary.Model;
-using System.Collections.Generic;
 using System.ServiceProcess;
 using System.Threading.Tasks;
 using System.Timers;

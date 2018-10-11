@@ -1,4 +1,6 @@
-﻿using Scheduler.BusinessLogicLibrary.Common;
+﻿using Newtonsoft.Json;
+using Scheduler.BusinessLogicLibrary.Common;
+using Scheduler.BusinessLogicLibrary.Model;
 using Scheduler.LoggerLibrary.Common;
 using Scheduler.Model;
 using System;
@@ -8,6 +10,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace Scheduler
 {
@@ -231,114 +235,164 @@ namespace Scheduler
         private void ExecuteLogic()
         {
             // Declarations
+            string sUrl;
             JobScheduler jobScheculer;
+            HttpResponseMessage response;
             List<SchedulerExecution> schedulerExecutions;
 
             // Get all scheduler executions(in TSchedulerExecution)
             schedulerExecutions = SchedulerBlo.GetCurrentExecutions();
-             
+
             foreach (SchedulerExecution schedulerExecution in schedulerExecutions)
             {
                 // If the execution is scheduled(pending) and execution time has passed, run logic
                 if (schedulerExecution.Status.Equals((int)Enumerations.ExecutionStatus.Scheduled)
                     && schedulerExecution.ExecutionTimeStamp < DateTime.Now)
-                { 
+                {
                     // Get the corresponding job scheduler
                     jobScheculer = SchedulerBlo.GetJobScheduler(schedulerExecution.SchedulerId);
 
-
-                    ClientGet(Helper.GetRegistryKeyValue(Constants._PioRegistryPath, Constants._AccountPayableApiPath));
-                     
-                    /*
                     using (var client = new HttpClient())
                     {
-                        client.BaseAddress = new Uri(Helper.GetRegistryKeyValue(Constants._PioRegistryPath, Constants._AccountPayableApiPath));
-                        var content = new StringContent(JsonConvert.SerializeXmlNode(xmlDocument, Newtonsoft.Json.Formatting.None, true), Encoding.UTF8, "application/json");
-                        //var response = client.PostAsync(string.Format("{0}{1}", client.BaseAddress, Helper.GetRegistryKeyValue(Constants.RegistryPathes._PioPath, Constants.RegistryPathes._ReferralRoute)), content).Result;
-                        var result = await client.GetAsync("http://localhost:56908/api/vendor/" + uname + "/" + pass);
-                        if (!response.IsSuccessStatusCode)
-                            referralResponse = new Referral_Response(Constants.RequestAcknowledgement._RejectXmlRequest, Constants.ExceptionMessages._ExceptionOccured);
-                        else
-                            referralResponse = JsonConvert.DeserializeObject<Referral_Response>(response.Content.ReadAsStringAsync().Result);
-                        
-                    }*/
+                        client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8");
+                        // Compose the URL
+                        client.BaseAddress = new Uri(Helper.GetRegistryKeyValue(Constants._PioRegistryPath, Constants._PioServer));
+                        // AccountPayablePath in Registry = api/AccountsPayable/PaymentOrders?payerId={0}&dateFrom={1}&dateTo={2}
+                        sUrl = string.Format("{0}{1}",
+                                        client.BaseAddress,
+                                        string.Format(Helper.GetRegistryKeyValue(Constants._PioRegistryPath, Constants._Pio_AccountPayable),
+                                                jobScheculer.PartnerId,
+                                                "2018-04-01T00:00:00",
+                                                "2018-04-03T00:00:00"));
 
+                        response = client.GetAsync(sUrl).Result;
+                        if (response.IsSuccessStatusCode)
+                        {
+
+                        }
+                    }
                 }
+
+
+
+                // Take the XML file from the shared folder, send to PIO
+
+                // Request from PIO the XML file and store it on the shared folder
+                // File Name:       TATAPPO_<<PoNum>><<Date of File PreparationYYYYMMDD>>_<<incremental#>>.XML
+                //              RES_TATAPPO_<<PoNum>><<Date of File PreparationYYYYMMDD>>_<<incremental#>>.XML
+
+
+                /*
+                switch (jobScheculer.PartnerType)
+                        {
+                            case (int)Enumerations.PartnerType.Bank:
+                                break;
+                            case (int)Enumerations.PartnerType.Payer:
+                                break;
+                            case (int)Enumerations.PartnerType.Sprovider:
+                                break;
+                            case (int)Enumerations.PartnerType.NApplicable:
+                                break;
+                            case (int)Enumerations.PartnerType.Distributor:
+                                break;
+                            case (int)Enumerations.PartnerType.Reinsurer:
+                                break;
+                            case (int)Enumerations.PartnerType.HealthProvider:
+                                break;
+                        }
+
+                        switch (jobScheculer.ActionTye)
+                        {
+                            case (int)Enumerations.ActionType.Push:
+                                // Push data from NC DBs to shared folder accessed by client via SFTP
+
+                                break;
+
+                            case (int)Enumerations.ActionType.Pull:
+                                break;
+
+                            case (int)Enumerations.ActionType.Inbound:
+                                break;
+
+                            case (int)Enumerations.ActionType.Outbound:
+                                break;
+                        }
+                */
+
             }
-
-
-
-            // Take the XML file from the shared folder, send to PIO
-
-            // Request from PIO the XML file and store it on the shared folder
-            // File Name:       TATAPPO_<<PoNum>><<Date of File PreparationYYYYMMDD>>_<<incremental#>>.XML
-            //              RES_TATAPPO_<<PoNum>><<Date of File PreparationYYYYMMDD>>_<<incremental#>>.XML
-
-
-            /*
-            switch (jobScheculer.PartnerType)
-                    {
-                        case (int)Enumerations.PartnerType.Bank:
-                            break;
-                        case (int)Enumerations.PartnerType.Payer:
-                            break;
-                        case (int)Enumerations.PartnerType.Sprovider:
-                            break;
-                        case (int)Enumerations.PartnerType.NApplicable:
-                            break;
-                        case (int)Enumerations.PartnerType.Distributor:
-                            break;
-                        case (int)Enumerations.PartnerType.Reinsurer:
-                            break;
-                        case (int)Enumerations.PartnerType.HealthProvider:
-                            break;
-                    }
-
-                    switch (jobScheculer.ActionTye)
-                    {
-                        case (int)Enumerations.ActionType.Push:
-                            // Push data from NC DBs to shared folder accessed by client via SFTP
-
-                            break;
-
-                        case (int)Enumerations.ActionType.Pull:
-                            break;
-
-                        case (int)Enumerations.ActionType.Inbound:
-                            break;
-
-                        case (int)Enumerations.ActionType.Outbound:
-                            break;
-                    }
-            */
-
         }
 
 
-        public string ClientGet(string url)
+
+        private void button2_Click(object sender, EventArgs e)
         {
-            var request = (HttpWebRequest)WebRequest.Create(url);
+            string sUrl;
+            HttpResponseMessage response;
+            PaymentOrder_Response formattedResponse;
+            PaymentOrders_Response finalResponse;
+            List<List<PaymentOrder>> paymentOrders;
 
-            request.Method = "GET";
-            var content = string.Empty;
-
-            using (var response = (HttpWebResponse)request.GetResponse())
+            using (var client = new HttpClient())
             {
-                using (var stream = response.GetResponseStream())
+                client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8");
+                // Compose the URL
+                client.BaseAddress = new Uri(Helper.GetRegistryKeyValue(Constants._PioRegistryPath, Constants._PioServer));
+                // AccountPayablePath in Registry = api/AccountsPayable/PaymentOrders?payerId={0}&dateFrom={1}&dateTo={2}
+                sUrl = string.Format("{0}{1}",
+                                client.BaseAddress,
+                                string.Format(Helper.GetRegistryKeyValue(Constants._PioRegistryPath, Constants._Pio_AccountPayable),
+                                        301,
+                                        "2018-04-01T00:00:00",
+                                        "2018-04-03T00:00:00"));
+
+                response = client.GetAsync(sUrl).Result;
+                if (response.IsSuccessStatusCode)
                 {
-                    using (var sr = new StreamReader(stream))
+                    formattedResponse = JsonConvert.DeserializeObject<PaymentOrder_Response>(response.Content.ReadAsStringAsync().Result);
+                    if (!formattedResponse.Message.GetType().Equals(typeof(string)))
                     {
-                        content = sr.ReadToEnd();
+                        formattedResponse = new PaymentOrder_Response(
+                                                    formattedResponse.SuccessCode,
+                                                    JsonConvert.DeserializeObject<List<List<PaymentOrder>>>(formattedResponse.Message.ToString()));
+                        paymentOrders = (List<List<PaymentOrder>>)formattedResponse.Message;
+
+                        foreach (List<PaymentOrder> paymentOrderList in paymentOrders)
+                        {
+                            finalResponse = new PaymentOrders_Response(formattedResponse.SuccessCode, paymentOrderList);
+                            WriteXmlFile(finalResponse);
+                        }
+
                     }
                 }
             }
-
-            return content;
         }
 
+        private void WriteXmlFile(PaymentOrders_Response formattedResponse)
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(PaymentOrders_Response));
+            string sXml, sXmlFilePath;
+            XmlDocument xmlDocument = new XmlDocument();
 
+            using (var stringWriter = new StringWriter())
+            {
+                using (XmlWriter writer = XmlWriter.Create(stringWriter))
+                {
+                    xmlSerializer.Serialize(writer, formattedResponse);
+                    sXml = stringWriter.ToString();
 
+                    xmlDocument.LoadXml(sXml);
+                    //C:\Users\samer.azar\Desktop\test\TATAPPO_{0}{1}_{2}.xml => TATAPPO_<<PONum>><<Date of File PreparationYYYYMMDD>>_<<incremental#>>.XML
+                    sXmlFilePath = string.Format(
+                                            Helper.GetRegistryKeyValue(Constants._PioRegistryPath,
+                                                                        Constants._Pio_AccountPayable_SftpPath),
+                                            formattedResponse.Message.Select(x => x.INVOICE_NUM).FirstOrDefault(),
+                                            DateTime.Today.ToString("yyyyMMdd"),
+                                            1);
+                    if (!File.Exists(sXmlFilePath))
+                        xmlDocument.Save(sXmlFilePath);
 
-
+                }
+            }
+        }
     }
 }

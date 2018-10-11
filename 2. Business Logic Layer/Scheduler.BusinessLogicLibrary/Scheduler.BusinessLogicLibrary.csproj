@@ -43,11 +43,11 @@
   <ItemGroup>
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\Helper.cs" />
-    <Compile Include="Common\MainLogic.cs" />
     <Compile Include="Common\SchedulerBlo.cs" />
+    <Compile Include="Model\PaymentOrder.cs" />
+    <Compile Include="Model\PaymentOrder_Response.cs" />
     <Compile Include="Model\SchedulerExecution.cs" />
     <Compile Include="Model\JobScheduler.cs" />
-    <Compile Include="Model\SchedulerJoinedSettings.cs" />
     <Compile Include="Model\SchedulerLog.cs" />
     <Compile Include="Model\SchedulerSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
